@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        /* Reset some default browser styles */
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the body with some basic background and font styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Style the form container */
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            
+        }
+
+        /* Style the form labels and inputs */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style the submit button */
+        input[type="submit"] {
+            background-color: #015f5f;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #177a7a;
+        }
+    </style>
+</head>
+<body>
+    <form action="/form" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="">
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
