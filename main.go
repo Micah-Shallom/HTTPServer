@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+	"fmt"
 	f "fmt"
 	"log"
 	"net/http"
@@ -37,7 +39,14 @@ func main() {
 	http.HandleFunc("/main", mainHandler)
 
 	f.Printf("Starting server on port 8000\n")
-	if err := http.ListenAndServe(":8000", nil); err != nil {
+	// if err := http.ListenAndServe(":8000", nil); err != nil {
+	// 	log.Fatal(err)
+	// }
+	err := http.ListenAndServe(":8000", nil)
+	if errors.Is(err, http.ErrServerClosed){ //checks if the server was shutdown
+		fmt.Printf("Server has been shutdown")
+	}else if err != nil {
+		fmt.Printf("Error starting server")
 		log.Fatal(err)
 	}
 }
