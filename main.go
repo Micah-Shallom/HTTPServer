@@ -16,7 +16,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	f.Fprintf(w, "Post request successful\n")
 	name := r.FormValue("name")
 	address := r.FormValue("address")
-	f.Fprintf(w, "Name= %s\n", name)
+	f.Fprintf(w, "Name= %s\n", name)clearaddress
 	f.Fprintf(w, "Address= %s\n", address)
 }  
 
@@ -33,16 +33,18 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	mux := http.NewServeMux()
 	fileServer := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fileServer)
-	http.HandleFunc("/form", formHandler)
-	http.HandleFunc("/main", mainHandler)
+	
+	mux.Handle("/", fileServer)
+	mux.HandleFunc("/form", formHandler)
+	mux.HandleFunc("/main", mainHandler)
 
 	f.Printf("Starting server on port 8000\n")
 	// if err := http.ListenAndServe(":8000", nil); err != nil {
 	// 	log.Fatal(err)
 	// }
-	err := http.ListenAndServe(":8000", nil)
+	err := http.ListenAndServe(":8000", mux)
 	if errors.Is(err, http.ErrServerClosed){ //checks if the server was shutdown
 		fmt.Printf("Server has been shutdown")
 	}else if err != nil {
